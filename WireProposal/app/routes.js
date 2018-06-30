@@ -1,5 +1,5 @@
 var Proposal = require('./models/proposal');
-const uuidv1 = require('uuid/v1');
+const uuidv4 = require('uuid/v4');
 
 module.exports = function(app) {
 
@@ -16,13 +16,13 @@ module.exports = function(app) {
     app.post('/api/props', function(req, res) {
 
         Proposal.create({
-            "id" : uuidv1(),
+            "id" : uuidv4(),
             "datetime" : req.body.datetime,
             "description" : req.body.description,
             "negotiable" : req.body.negotiable,
             "status" : 0,
-            "company_id" : uuidv1(),
-            "job_id" : uuidv1(),
+            "company_id" : uuidv4(),
+            "job_id" : uuidv4(),
             "created_at": Date.now(),
             "updated_at": Date.now()
         }, function(err, prop) {

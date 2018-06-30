@@ -3,9 +3,10 @@ var app      = express();
 var mongoose = require('mongoose');                     
 var port     = process.env.PORT || 1234;                
 var database = require('./config/database');            
-var morgan = require('morgan');             
+var morgan   = require('morgan');             
 var bodyParser = require('body-parser');    
 var methodOverride = require('method-override'); 
+var autoMock = true;
 
 
 // configuration 
@@ -21,6 +22,12 @@ app.use(methodOverride());
 require('./app/routes.js')(app);
 module.exports = app;
 
+
 // listen 
 app.listen(port);
 console.log("App listening on port " + port);
+
+
+//mock, automock charge mongodb with few users and proposals just if the table doesn't exist
+if(autoMock)
+    require('./test/mock.js')(app);
