@@ -63,8 +63,8 @@ describe('API endpoint /api/props', function () {
             .set({'x-access-token':token})
             .send({
                 "datetime" : Date.now(),
-                "description" : "TTTDescription",
-                "negotiable" : "TTTNegotiable"
+                "description" : "TTTDescription"+Math.floor(Math.random() * 1000000) ,
+                "negotiable" : "TTTNegotiable"+Math.floor(Math.random() * 1000000) 
             })
             .then(function (res) {
                 expect(res).to.have.status(201);

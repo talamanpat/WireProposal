@@ -11,7 +11,7 @@ var users= [{
     "profile_pic" : "empty",
     "name" : "Jean Pierre",
     "email" : "jean.pierre@example.com",
-    "user_role_id" : "admin",
+    "user_role_id" : "company",
     "password" : "e10adc3949ba59abbe56e057f20f883e",
     "phone_number" : "12345678",
     "address" : "Example st. 2323",

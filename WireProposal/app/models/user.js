@@ -13,5 +13,6 @@ module.exports = mongoose.model('User', {
     zip_code : String,
     city : String,
     created_at: Date,
-    updated_at: Date
+    updated_at: Date,
+    job_name:String
 });

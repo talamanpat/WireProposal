@@ -1,4 +1,7 @@
 var Proposal = require('../models/proposal');
+var Company = require('../models/company');
+var User = require('../models/user');
+var Job = require('../models/job');
 const uuidv4 = require('uuid/v4');
 var jwt      = require('jsonwebtoken');
 var express  = require('express');
@@ -27,11 +30,21 @@ var confs    = require('../../config/confs');
   
 //----------------------------------------------------
 router.put('/props', function(req, res) {
-    Proposal.find(function(err, props) {
+
+    Company.findOne({'user_id' : req.decoded.userId},function(err, comp) {
         if (err)
             res.send(err)
-        res.json(props);
+        Proposal.find({
+            company_id : comp.id
+        },function(err, props) {
+            if (err)
+                res.send(err)
+            res.json(props);
+        });
     });
+
+
+   
 });
 router.post('/props', function(req, res) {
     var propId= uuidv4();
@@ -70,7 +83,25 @@ router.delete('/props/:proposal_id', function(req, res) {
         Proposal.find(function(err, props) {
             if (err)
                 res.send(err)
+            
+            Job.findOne({"id":req.body.job_id}, 
+                function(err, j){
+             
+                    if (err || j===null)
+                        res.send(err);
+                    else{
+                    User.findOne({"id":j.user_id}, 
+                        function(err, u){
+                            if (err)
+                                res.send(err);
+                            else
+                            res.json(u);
+                        });
+                    }
+                });
             res.json(props);
+
+
         });
     });
 });
@@ -82,8 +113,7 @@ router.patch('/props/:proposal_id', function(req, res) {
                 "error": "status is not valid."
             });
         }
-
-Proposal.findOneAndUpdate({"id":req.params.proposal_id},{ "status" : req.body.status }, 
+    Proposal.findOneAndUpdate({"id":req.params.proposal_id},{ "status" : req.body.status }, 
     function(err, doc){
         if (err)
             res.send(err);
@@ -96,7 +126,29 @@ Proposal.findOneAndUpdate({"id":req.params.proposal_id},{ "status" : req.body.st
         });
     });
 });
-
+router.put('/getInfoUserByJob', function(req, res) {
+    //console.log(req.body.job_id);
+    Job.findOne({"id":req.body.job_id}, 
+    function(err, j){
+ 
+        if (err || j===null)
+            res.send(err);
+        else{
+        User.findOne({"id":j.user_id}, 
+            function(err, u){
+                if (err)
+                    res.send(err);
+                else{
+        
+                    u.job_name = j.title;
+                    res.json(u);
+                }
+            });
+        }
+    });
+    
+ 
+});
 
 
 module.exports = router;

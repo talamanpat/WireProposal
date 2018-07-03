@@ -74,22 +74,32 @@
             </div>
         </div>
 
-      
+      <div class="checkbox text-right"><h3><label style="text-decoration: underline;" ng-click="Logout()">Logout</label></h3></div>
 
     </div>
     <div class="container" ng-show="formData.id !== undefined">
+            <div class="jumbotron text-center">
+                    <h1>Evaluating Proposal</span></h1>
+                </div>
+        
             <div id="prop-form" class="row" >
                     <div class="col-sm-8 col-sm-offset-2 text-center">
                         <form>
                             <div class="form-group">
-                                <input type="hidden" class="form-control input-lg text-center" ng-model="formData.id">
-                             <label class="field-label input-lg text-center"  >{{formData.description}}</label>   
+                                <input type="hidden"  ng-model="formData.id">
+                                <input type="hidden"  ng-model="formData.job_id">
+                                <input type="hidden"  ng-model="formData.user_id">
+                                <label class="field-label input-lg text-center">Applicant: {{formData.applicant}}</label>   
+                                <label class="field-label input-lg text-center"  >Email: {{formData.email}}</label>   
+                                <label class="field-label input-lg text-center"  >Job: {{formData.jobName}}</label>   
+                                <label class="field-label input-lg text-center"  >Description: {{formData.description}}</label>   
+                                <label class="field-label input-lg text-center"  >Negotiable: {{formData.negotiable}}</label>   
         <!--                     <input type="text" class="form-control input-lg text-center" ng-model="formData.text">-->
                             </div>
         
                             <button type="submit" class="btn btn-primary btn-lg" ng-click="AcceptProp()">Accept</button>
                             <button type="submit" class="btn btn-primary btn-lg" ng-click="RejectProp()">Reject</button>
-                            <button type="submit" class="btn btn-primary btn-lg" ng-click="Close()">Close</button>
+                            <button type="submit" class="btn btn-primary btn-lg" ng-click="CloseProp()">Go Back</button>
                         </form>
                     </div>
                 </div>

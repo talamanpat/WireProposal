@@ -14,6 +14,9 @@ angular.module('propService', [])
             },
             canceled : function(propData) {
                 return $http.patch('/api/props/'+propData.id, {'status':3});
+            },
+            getInfoUser : function(jobId) {
+                return $http.put('/api/getInfoUserByJob', {'job_id':jobId});
             }
         }
     });
