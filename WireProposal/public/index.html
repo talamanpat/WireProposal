@@ -1,0 +1,99 @@
+<!doctype html>
+
+<html ng-app="WireProposal">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+        <title>Company app - WireDelta Proposals System</title>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+        <style>
+            html                    { overflow-y:scroll; }
+            body                    { padding-top:50px; }
+            #prop-list              { margin-bottom:30px; }
+        </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>   
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.js"></script>
+    <script src="js/controllers/main.js"></script> 
+    <script src="js/services/proposals.js"></script> 
+    <script src="js/services/auth.js"></script> 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.js"></script>
+    <script src="js/core.js"></script> 
+    </head>
+<body ng-controller="mainController">
+    <div class="container" ng-show="formData.id === undefined">
+
+        <div class="jumbotron text-center">
+            <h1>Pending proposals: <span class="label label-info">{{ (props| filter:{status: 0}).length }}</span></h1>
+        </div>
+
+        <div id="prop-list" class="row" ng-show="(props| filter:{status: 0}).length">
+            <div class="col-sm-4 col-sm-offset-6">
+<h2>Pendings</h2>
+                <div class="checkbox" ng-repeat="prop in props | filter : {status: 0}">
+                    <label ng-click="EvaluateProp(prop)">
+                         {{ prop.description }}
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="prop-list" class="row" ng-show="(props| filter:{status: 1}).length">
+            <div class="col-sm-4 col-sm-offset-4">
+                <h2>Accepted</h2>
+                <div class="checkbox" ng-repeat="prop in props | filter : {status: 1}">
+                    <label ng-click="EvaluateProp(prop)">
+                         {{ prop.description }}
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="prop-list" class="row" ng-show="(props| filter:{status: 2}).length"> 
+            <div class="col-sm-4 col-sm-offset-4">
+                <h2>Rejected</h2>
+                <div class="checkbox" ng-repeat="prop in props | filter : {status: 2}">
+                    <label ng-click="EvaluateProp(prop)">
+                         {{ prop.description }}
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="prop-list" class="row" ng-show="(props| filter:{status: 3}).length">
+            <div class="col-sm-4 col-sm-offset-4">
+                <h2>Canceled</h2>
+                <div class="checkbox" ng-repeat="prop in props | filter : {status: 3}">
+                    <label ng-click="EvaluateProp(prop)">
+                         {{ prop.description }}
+                    </label>
+                </div>
+            </div>
+        </div>
+
+      
+
+    </div>
+    <div class="container" ng-show="formData.id !== undefined">
+            <div id="prop-form" class="row" >
+                    <div class="col-sm-8 col-sm-offset-2 text-center">
+                        <form>
+                            <div class="form-group">
+                                <input type="hidden" class="form-control input-lg text-center" ng-model="formData.id">
+                             <label class="field-label input-lg text-center"  >{{formData.description}}</label>   
+        <!--                     <input type="text" class="form-control input-lg text-center" ng-model="formData.text">-->
+                            </div>
+        
+                            <button type="submit" class="btn btn-primary btn-lg" ng-click="AcceptProp()">Accept</button>
+                            <button type="submit" class="btn btn-primary btn-lg" ng-click="RejectProp()">Reject</button>
+                            <button type="submit" class="btn btn-primary btn-lg" ng-click="Close()">Close</button>
+                        </form>
+                    </div>
+                </div>
+    </div>
+
+</body>
+</html>

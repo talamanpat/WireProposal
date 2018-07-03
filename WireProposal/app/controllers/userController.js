@@ -7,7 +7,6 @@ let router = express.Router();
 var confs = require('../../config/confs');     
 
     router.post('/auth', function(req, res) {
-
         User.findOne({
           email: req.body.email
         }, function(err, user) {
@@ -27,7 +26,7 @@ var confs = require('../../config/confs');
             user : (user.id)
           };
               var token = jwt.sign(payload, confs.tokenKey, {
-                expiresIn: 1440 // expires in 24 hours
+                expiresIn: 2880 // expires in 48 hours
               });
       
               res.json({

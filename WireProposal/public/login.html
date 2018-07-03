@@ -1,0 +1,41 @@
+<!doctype html>
+<html ng-app="WireProposal">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+        <title>Login Company - WireDelta Proposals System</title>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+        <style>
+            html                    { overflow-y:scroll; }
+            body                    { padding-top:50px; }           
+            #login-list              { margin-bottom:30px; }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>   
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.js"></script>
+        <script src="js/services/proposals.js"></script>
+        <script src="js/services/auth.js"></script>  
+        <script src="js/controllers/main.js"></script> 
+        <script src="js/core.js"></script> 
+    </head>
+<body ng-controller="mainController">
+    <div class="container">
+        <div id="login-form" class="row">
+            <div class="col-sm-4 col-sm-offset-4 text-center">
+                <form>
+                    <div class="form-group">
+                <label class="field-label input-lg text-center">Email</label>                        
+                <input type="text" class="form-control input-lg text-center" placeholder="Email" ng-model="formData.email">
+                <label class="field-label input-lg text-center">Password</label>           
+                <input type="password" class="form-control input-lg text-center" placeholder="Password" ng-model="formData.password">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="Login()">Login</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
