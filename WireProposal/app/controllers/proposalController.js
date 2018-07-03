@@ -54,8 +54,8 @@ router.post('/props', function(req, res) {
         "description" : req.body.description,
         "negotiable" : req.body.negotiable,
         "status" : 0,
-        "company_id" : "c5185640-57eb-4ea2-a4b7-50b3577a0f79",
-        "job_id" : "71726c29-e207-4dfa-a6d7-246eadb769e6" ,
+        "company_id" : req.decoded.userId,
+        "job_id" : req.body.job_id ,
         "created_at": Date.now(),
         "updated_at": Date.now()
     }, function(err, prop) {

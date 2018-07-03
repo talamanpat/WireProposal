@@ -14,6 +14,8 @@ describe('API endpoint /api/props', function () {
     var token = "";
     var emailUser = "test"+Math.floor(Math.random() * 1000000) +"@test.com";
     var companyNameUser ="TTTTest"+Math.floor(Math.random() * 1000000) ;
+    var idUser ="";
+
     before(function () {
     });
 
@@ -22,6 +24,7 @@ describe('API endpoint /api/props', function () {
     });
 
     //POST-create user for testing
+    //TODO: create local authentication and protect setup route
     it('should create a new user company', function () {
         return chai.request(app)
             .post('/setup/company')
@@ -29,13 +32,16 @@ describe('API endpoint /api/props', function () {
                 "name" : "Juan perez",
                 "email" : emailUser, 
                 "password" : "123456", 
-                "companyName" : companyNameUser
+                "companyName" : companyNameUser,
+                
             })
             .then(function (res) {
                 expect(res).to.have.status(201);
                 expect(res).to.be.json;
                 expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('name');
                 expect(res.body.id).to.be.an('string');
+                idUser = res.body.id;
             });
     });
 
@@ -51,7 +57,9 @@ describe('API endpoint /api/props', function () {
                 expect(res).to.have.status(200);
                 expect(res).to.be.json;
                 expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('success');
                 expect(res.body.success).to.be.an('boolean').that.is.equals(true);
+                expect(res.body).to.have.property('token');
                 expect(res.body.token).to.be.an('string');
                 token = res.body.token;
             });
@@ -64,17 +72,16 @@ describe('API endpoint /api/props', function () {
             .send({
                 "datetime" : Date.now(),
                 "description" : "TTTDescription"+Math.floor(Math.random() * 1000000) ,
-                "negotiable" : "TTTNegotiable"+Math.floor(Math.random() * 1000000) 
+                "negotiable" : "TTTNegotiable"+Math.floor(Math.random() * 1000000) ,
+                "job_id":"71726c29-e207-4dfa-a6d7-246eadb769e6"
             })
             .then(function (res) {
                 expect(res).to.have.status(201);
                 expect(res).to.be.json;
-                expect(res.body).to.be.an('array');
-        //        expect(res.body.proposal).to.be.an('array');//.that.deep.includes({id:4,title:'Norberto' });
-                
+                expect(res.body).to.be.an('array');                
             });
     });
-        // GET - List all proposals
+        // PUT - List all proposals
     it('should return all proposals', function () {
         return chai.request(app)
             .put('/api/props')
@@ -90,7 +97,8 @@ describe('API endpoint /api/props', function () {
     it('should change the status', function () {
 
         return chai.request(app)
-            .patch('/api/props/'+"af6603d0-7c4b-11e8-a339-a3303c765d50")
+        //TODO: get id from own prop and add validation of user prop modification, time...
+            .patch('/api/props/'+"3b5df17b-1240-4051-9edb-61031d93ff6d")
             .set({'x-access-token':token})
             .send({
                 "status" : 3
@@ -101,33 +109,21 @@ describe('API endpoint /api/props', function () {
                 expect(res.body).to.be.an('array');
             });
     });
-
-    // GET - Invalid path
- /*   it('should return Not Found', function () {
+     // PUT - get user by job 
+     it('should return info about the user who is posting', function () {
         return chai.request(app)
-            .get('/api/INVALID_PATH')
-            .then(function (res) {
-                throw new Error('Path exists!');
+            .put('/api/getInfoUserByJob')
+            .set({'x-access-token':token})  
+            .send({
+                "job_id" : "3eb6fae4-449d-4bf6-bfb5-fa1d60417974",
             })
-            .catch(function (err) {
-                expect(err).to.have.status(404);
+            .then(function (res) {
+                expect(res).to.have.status(200);
+                expect(res).to.be.json;
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.have.property('name');
+                expect(res.body.id).to.be.an('string');
             });
     });
 
-
-    // POST - Bad Request
-    it('should return Bad Request', function () {
-        return chai.request(app)
-            .post('/api/cats')
-            .type('form')
-            .send({
-                color: 'YELLOW'
-            })
-            .then(function (res) {
-                throw new Error('Invalid content type!');
-            })
-            .catch(function (err) {
-                expect(err).to.have.status(400);
-            });
-    });*/
 });
