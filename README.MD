@@ -6,11 +6,11 @@ The project is supposed to be a panel to evaluate proposals made by applicant us
 ### Prerequisites
 
 To run and try the current project you should have the next requirements:
-*NodeJS and npm installed, I am using the Node version 8.11.3 and npm 6.1.0.
-*A web browser.
-*Postman, to try the API directly (where are more options than the developed in the Frontend).
-*A MongoDB provider, or use the default configuration with my Atlas MongoDB.
-*MongoDB Compass recommended.
+* NodeJS and npm installed, I am using the Node version 8.11.3 and npm 6.1.0.
+* A web browser.
+* Postman, to try the API directly (where are more options than the developed in the Frontend).
+* A MongoDB provider, or use the default configuration with my Atlas MongoDB.
+* MongoDB Compass recommended.
 
 ### Installing
 
@@ -98,7 +98,7 @@ PATCH/API /props/:proposal_id
 PUT /API/getInfoUserByJob 
 ```
 
-*Authentication and setup
+* Authentication and setup
 ```
 -- Authentication with JSON Web Token. Require email and password.
 POST /auth
@@ -113,7 +113,7 @@ localhost:1234/*
 localhost:1234/login.html
 ```
 ##  Author's notes about design decisions
-*IDs: Use Int data type and correlatives for ID is highly not recommended, makes the system very vulnerable to be hacked and more. I have used Universal IDs for this purpose, changing momentarily the data type to string. On the other hand, I have not used the "_id" field of MongoDB to conserve some design, not adding the relations as an object, instead of that I simulated a relational database behavior by individual queries.
+* IDs: Use Int data type and correlatives for ID is highly not recommended, makes the system very vulnerable to be hacked and more. I have used Universal IDs for this purpose, changing momentarily the data type to string. On the other hand, I have not used the "_id" field of MongoDB to conserve some design, not adding the relations as an object, instead of that I simulated a relational database behavior by individual queries.
 * Tables used: Proposals, User, Company, and Job.
 * I missed to add a component to share code between the two web pages (/ and /login) because of time... But I know that should be done. Mainly the head section. 
 * As well, because of time, I missed to make a local setup for the token in unit testing.
