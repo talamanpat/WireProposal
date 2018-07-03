@@ -1,87 +1,90 @@
-# Project Title
+# WireProposal
 
-One Paragraph of project description goes here
-
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+A test made for the JS Developer position in WireDelta by Daniel Antonio Tala de Dompierre de Chaufepie.
+The project is supposed to be a panel to evaluate proposals made by applicant users, where the company can accept or reject these proposals. 
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
+To run and try the current project you should have the next requirements:
+-NodeJS and npm installed, I am using the Node version 8.11.3 and npm 6.1.0.
+-A web browser.
+-Postman, to try the API directly (where are more options than the developed in the Frontend).
+-A MongoDB provider, or use the default configuration with my Atlas MongoDB.
+-MongoDB Compass recommended.
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
+To have the project installed and running on your computer, you should do the next steps: 
+1. clone or download the repository, extract/save it in your preferred folder for NodeJS projects.   
+2. Locate the folder of the project ("./WireProposal") on CMD, and run npm install to download dependencies.
 ```
-Give the example
+npm install
+```
+3. Configure your preferred MongoDB engine in the file "./config/confs.js", or left the current one that works with my atlas MongoDB.
+4. Run the application, if the connection to MongoDB is ok and there does not exist tables for the app in the MongoDB, it should set up everything that is needed to run and test the system, adding useful mocks to test the application by you.
+```
+npm start
+```
+In case of being a new database, it should say something like this:
+```
+A new database, mocking!
+creating users and companies...
+done
+creating jobs and proposals...
+done
+```
+If all goes well, it should output that the listener is running on the port 1234:
+```
+App listening on port 1234
 ```
 
-And repeat
-
+5. 
+The first run of the database should have created the following users:
 ```
-until finished
-```
+user: jean.pierre@example.com (company)
+password: 123456
 
-End with an example of getting some data out of the system or using it for a little demo
+user: paul.walker@companyexample.com (company)
+password: 123456
+
+user: daniel.talaman@gmail.com (applicant)
+password: 123456
+
+user: john.doe@example.com (applicant)
+password: 123456
+```
+So, go to your browser and navigate to the next URL:
+```
+localhost:1234
+```
+It should redirect you to the login page, use the jean.pierre@example.com user to have few proposals to evaluate. For more information about adding proposals between other possibilities, see the section API. 
+
+Given that the application is for company users, just company users should be allowed to enter into this app, while applicants are waiting for a response.
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
+To run unitary tests, use the following command when you are located in the project's folder:
 ```
-Give an example
+npm test
 ```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* NodeJS
+* Express
+* Angular
+* JSON Web Token
+* MD5 Password encryption
+* MongoDB
+* Mongoose
+* Chai and Mocha
 
-## Contributing
+## API
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+##  Author's notes about design decisions
 
-## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+## Author
 
-## Authors
+* **Daniel Antonio Tala de Dompierre de Chaufepie** 
+Talaman.info
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
