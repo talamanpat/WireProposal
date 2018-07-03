@@ -1,16 +1,16 @@
 # WireProposal
 
-A test made for the JS Developer position in WireDelta by Daniel Antonio Tala de Dompierre de Chaufepie.
+A test project for the JS Developer position in WireDelta by Daniel Antonio Tala de Dompierre de Chaufepie.
 The project is supposed to be a panel to evaluate proposals made by applicant users, where the company can accept or reject these proposals. 
 
 ### Prerequisites
 
 To run and try the current project you should have the next requirements:
--NodeJS and npm installed, I am using the Node version 8.11.3 and npm 6.1.0.
--A web browser.
--Postman, to try the API directly (where are more options than the developed in the Frontend).
--A MongoDB provider, or use the default configuration with my Atlas MongoDB.
--MongoDB Compass recommended.
+*NodeJS and npm installed, I am using the Node version 8.11.3 and npm 6.1.0.
+*A web browser.
+*Postman, to try the API directly (where are more options than the developed in the Frontend).
+*A MongoDB provider, or use the default configuration with my Atlas MongoDB.
+*MongoDB Compass recommended.
 
 ### Installing
 
@@ -38,8 +38,7 @@ If all goes well, it should output that the listener is running on the port 1234
 App listening on port 1234
 ```
 
-5. 
-The first run of the database should have created the following users:
+5. The first run of the database should have created the following users:
 ```
 user: jean.pierre@example.com (company)
 password: 123456
@@ -68,7 +67,6 @@ To run unitary tests, use the following command when you are located in the proj
 npm test
 ```
 ## Built With
-
 * NodeJS
 * Express
 * Angular
@@ -79,9 +77,47 @@ npm test
 * Chai and Mocha
 
 ## API
+The requirements asked to develop an application to evaluate proposals, the API is designed for specifically this functions and do not cover other parts of the system, it mocking the rest. 
+The API is secured by JSON Web Token, after authenticate (see the service /auth below) you have to send the token provided in the header of the request as:
+```
+x-access-token: (token provided)
+```
+An important detail is that I have replaced the GET method for PUT, given security reasons, sending the token as a header, not by URL.
 
+* Proposals API
+```
+--Get all the proposals of the company
+PUT /API/props
+--Create a proposal. Require datetime, description, negotiable and job_id.
+POST /API/props  
+--Delete a proposal. Require :proposal_id.
+DELETE /API/props/:proposal_id
+--Change the status of a proposal. Require :proposal:id and status ( 0 = pending , 1 = accepted , 2 = rejected , 3 = canceled).
+PATCH/API /props/:proposal_id 
+--Get valuable info about the user that posted the proposal. Require job_id.
+PUT /API/getInfoUserByJob 
+```
+
+*Authentication and setup
+```
+-- Authentication with JSON Web Token. Require email and password.
+POST /auth
+
+--Create a company user. Require name, email, password and companyName. Service open to not use a token for practical reasons, but needs security.
+ POST /setup/company
+```
+
+## Web pages
+```
+localhost:1234/*
+localhost:1234/login.html
+```
 ##  Author's notes about design decisions
-
+*IDs: Use Int data type and correlatives for ID is highly not recommended, makes the system very vulnerable to be hacked and more. I have used Universal IDs for this purpose, changing momentarily the data type to string. On the other hand, I have not used the "_id" field of MongoDB to conserve some design, not adding the relations as an object, instead of that I simulated a relational database behavior by individual queries.
+* Tables used: Proposals, User, Company, and Job.
+* I missed to add a component to share code between the two web pages (/ and /login) because of time... But I know that should be done. Mainly the head section. 
+* As well, because of time, I missed to make a local setup for the token in unit testing.
+* I could add many tests more, but I would need a bit of more time.
 
 ## Author
 
