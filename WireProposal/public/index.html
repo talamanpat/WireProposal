@@ -28,7 +28,7 @@
         </div>
 
         <div id="prop-list" class="row" ng-show="(props| filter:{status: 0}).length">
-            <div class="col-sm-4 col-sm-offset-6">
+            <div class="col-sm-4 col-sm-offset-4">
 <h2>Pendings</h2>
                 <div class="checkbox" ng-repeat="prop in props | filter : {status: 0}">
                     <label ng-click="EvaluateProp(prop)">

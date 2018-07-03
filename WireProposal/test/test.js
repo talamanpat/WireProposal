@@ -76,6 +76,7 @@ describe('API endpoint /api/props', function () {
                 "job_id":"71726c29-e207-4dfa-a6d7-246eadb769e6"
             })
             .then(function (res) {
+                
                 expect(res).to.have.status(201);
                 expect(res).to.be.json;
                 expect(res.body).to.be.an('array');                
@@ -98,7 +99,7 @@ describe('API endpoint /api/props', function () {
 
         return chai.request(app)
         //TODO: get id from own prop and add validation of user prop modification, time...
-            .patch('/api/props/'+"3b5df17b-1240-4051-9edb-61031d93ff6d")
+            .patch('/api/props/'+"70a7b000-47e2-451a-b05b-2191e1e5a727")
             .set({'x-access-token':token})
             .send({
                 "status" : 3

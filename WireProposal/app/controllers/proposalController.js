@@ -62,12 +62,25 @@ router.post('/props', function(req, res) {
         if (err)
             res.send(err);
 
+        Company.findOne({'user_id' : req.decoded.userId},function(err, comp) {
+            if (err)
+                res.send(err)
+            Proposal.find({
+                company_id : comp.id
+            },function(err, props) {
+                if (err)
+                    res.send(err)
+                
+                res.status(201).json(props);
+            });
+        });
+        
         // get and return all the props after you create another
-        Proposal.find(function(err, props) {
+    /*    Proposal.find(function(err, props) {
             if (err)
                 res.send(err)
             res.status(201).json(props);
-        });
+        });*/
     });
 
 });
@@ -118,12 +131,24 @@ router.patch('/props/:proposal_id', function(req, res) {
         if (err)
             res.send(err);
 
+            Company.findOne({'user_id' : req.decoded.userId},function(err, comp) {
+                if (err)
+                    res.send(err)
+                Proposal.find({
+                    company_id : comp.id
+                },function(err, props) {
+                    if (err)
+                        res.send(err)
+                    res.json(props);
+                });
+            });
+        
         // get and return all the props after you create another
-        Proposal.find(function(err, props) {
+       /* Proposal.find(function(err, props) {
             if (err)
                 res.send(err)
             res.json(props);
-        });
+        });*/
     });
 });
 router.put('/getInfoUserByJob', function(req, res) {

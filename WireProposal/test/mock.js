@@ -159,11 +159,11 @@ var jobs = [{
     "user_id":"7347c0c3-4505-474c-ab18-639eea616bab",
     "boat_id":"",
     "service_id":"",
-    "awarded_company_id":"90c56a96-0d18-43aa-81f8-ceca0d265859",
+    "awarded_company_id":"2b1b32d9-5b2e-4899-add2-53a8fd570b4",
     "created_at": Date.now(),
     "updated_at": Date.now()
 },{
-    "id" : "3eb6fae4-449d-4bf6-bfb5-fa1d60417974",
+    "id" : "210356a6-c9dd-43a8-b930-79d0cba4f2b7",
         "is_emergency" : true,
         "title" : "Technical support 2",
         "description" : "other",
@@ -238,8 +238,8 @@ var props = [{
     "description" : "Someone offering technical support",
     "negotiable" : "No",
     "status" : 0,
-    "company_id" : "90c56a96-0d18-43aa-81f8-ceca0d265859",
-    "job_id" : "3eb6fae4-449d-4bf6-bfb5-fa1d60417974",
+    "company_id" : "c5185640-57eb-4ea2-a4b7-50b3577a0f79",
+    "job_id" : "210356a6-c9dd-43a8-b930-79d0cba4f2b7",
     "created_at": Date.now(),
     "updated_at": Date.now()
 },
@@ -249,7 +249,7 @@ var props = [{
     "description" : "Someone offering technical support 2",
     "negotiable" : "No",
     "status" : 0,
-    "company_id" : "c5185640-57eb-4ea2-a4b7-50b3577a0f79",
+    "company_id" : "2b1b32d9-5b2e-4899-add2-53a8fd570b4",
     "job_id" : "3eb6fae4-449d-4bf6-bfb5-fa1d60417974",
     "created_at": Date.now(),
     "updated_at": Date.now()
