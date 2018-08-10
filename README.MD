@@ -113,11 +113,9 @@ localhost:1234/*
 localhost:1234/login.html
 ```
 ##  Author's notes about design decisions
-* IDs: Use Int data type and correlatives for ID is highly not recommended, makes the system very vulnerable to be hacked and more. I have used Universal IDs for this purpose, changing momentarily the data type to string. On the other hand, I have not used the "_id" field of MongoDB to conserve some design, not adding the relations as an object, instead of that I simulated a relational database behavior by individual queries.
-* Tables used: Proposals, User, Company, and Job.
-* I missed to add a component to share code between the two web pages (/ and /login) because of time... But I know that should be done. Mainly the head section. 
-* As well, because of time, I missed to make a local setup for the token in unit testing.
-* I could add many tests more, but I would need a bit of more time.
+* I have not used the "_id" field of MongoDB to conserve some design, not adding the relations as an object, instead of that I simulated a relational database behavior by individual queries.
+* I did not add a component to share code between the two web pages (/ and /login) because of time, but that should be done. 
+* Because of time, as well, I did not make a local setup for the token in unit testing, this is imperative for production systems.
 
 ## Author
 
