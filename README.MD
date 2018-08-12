@@ -1,6 +1,6 @@
 # WireProposal
 
-A test project for the JS Developer position in WireDelta by Daniel Antonio Tala de Dompierre de Chaufepie.
+A practice project made with, NodeJS, Angular, JSON Web Token, MongoDB, Chai and Mocha. By Daniel Antonio Tala de Dompierre de Chaufepie.
 The project is supposed to be a panel to evaluate proposals made by applicant users, where the company can accept or reject these proposals. 
 
 ### Prerequisites
